@@ -11,26 +11,40 @@
 // ==/UserScript==
 /* globals jQuery, $, waitForKeyElements */
 
+
+
 $( document ).ready(function() {
 
     var createSpan = $(".dropdown-label.spec-dropdown-label").append( "<span id='numberVal'>  </span>" );
     var numOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length;
-
+    var updateNumOfRows;
     $("#numberVal").text( ' (' + numOfRows + ')' );
 
     $('.ticket-view-link.ember-view.sui-dropdown_entry').click(function() {
+
+        // $('.print-hide.ember-view.sw-loading-spinner.loading-spinner:not(.loading)')
+        // $('.print-hide.ember-view.sw-loading-spinner.loading-spinner.loading')
 
         setTimeout(
             function()
             {
                 var updateNumOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length;
-                console.log(updateNumOfRows);
                 $("#numberVal").text( ' (' + updateNumOfRows + ')' );
             }, 1000);
+
+/*         $('#ember1824').scroll(function() {
+            if ($('.ticket-grid-container').is(':visible')) {
+                console.log("Scroll");
+            }*/
+        });
     });
 
+
+
+
+
     // This class name is for the refresh button
-/*     $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() {
+    /*     $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() {
 
         setTimeout(
             function()
@@ -45,7 +59,7 @@ $( document ).ready(function() {
 
 
     //This class is for the inner class refresh buttion.
-/*     $('.glyphicon.glyphicon-refresh.spec-refresh-btn').click(function() {
+    /*     $('.glyphicon.glyphicon-refresh.spec-refresh-btn').click(function() {
 
         setTimeout(
             function()
@@ -61,15 +75,15 @@ $( document ).ready(function() {
 
 
     //Find where container is scrolling.
-/*     $('#ember1824').scroll(function() {
+    /*     $('#ember1824').scroll(function() {
         if ($('.ticket-grid-container').is(':visible')) {
             console.log("Scroll");
         }
     }); */
-});
 
 
-/*
+
+    /*
 NOTES:
 
 The class name "spec-ticket-item ticket-item  ember-view loading" happens after all the rows have been displayed.
