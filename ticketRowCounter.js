@@ -21,10 +21,23 @@ $( document ).ready(function() {
     $("#numberVal").text( ' (' + numOfRows + ')' );
 
     $('.ticket-view-link.ember-view.sui-dropdown_entry').click(function() {
+        console.log('click event');
 
         // $('.print-hide.ember-view.sw-loading-spinner.loading-spinner:not(.loading)')
         // $('.print-hide.ember-view.sw-loading-spinner.loading-spinner.loading')
 
+        setTimeout(function() {
+            if($('.print-hide.ember-view.sw-loading-spinner.loading-spinner').hasClass('loading')) { console.log('loading'); }
+            else { console.log('Class loading not Found');
+
+                 }
+        }, 100);
+
+
+        /*         setTimeout(function() {
+            $('#ember3243').scrollTop($('#ember3243')[0].scrollHeight);
+        }, 3000); */
+
         setTimeout(
             function()
             {
@@ -32,34 +45,19 @@ $( document ).ready(function() {
                 $("#numberVal").text( ' (' + updateNumOfRows + ')' );
             }, 1000);
 
-/*         $('#ember1824').scroll(function() {
+        /*         $('#ember1824').scroll(function() {
             if ($('.ticket-grid-container').is(':visible')) {
                 console.log("Scroll");
             }*/
-        });
     });
+});
 
 
 
 
 
-    // This class name is for the refresh button
-    /*     $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() {
-
-        setTimeout(
-            function()
-            {
-                var updateNumOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length;
-                console.log(updateNumOfRows);
-                $("#numberVal").text( ' (' + updateNumOfRows + ')' );
-            }, 1000);
-
-        console.log("Button Clicked");
-    }); */
-
-
-    //This class is for the inner class refresh buttion.
-    /*     $('.glyphicon.glyphicon-refresh.spec-refresh-btn').click(function() {
+// This class name is for the refresh button
+/*     $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() {
 
         setTimeout(
             function()
@@ -73,9 +71,24 @@ $( document ).ready(function() {
     }); */
 
 
+//This class is for the inner class refresh buttion.
+/*     $('.glyphicon.glyphicon-refresh.spec-refresh-btn').click(function() {
 
-    //Find where container is scrolling.
-    /*     $('#ember1824').scroll(function() {
+        setTimeout(
+            function()
+            {
+                var updateNumOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length;
+                console.log(updateNumOfRows);
+                $("#numberVal").text( ' (' + updateNumOfRows + ')' );
+            }, 1000);
+
+        console.log("Button Clicked");
+    }); */
+
+
+
+//Find where container is scrolling.
+/*     $('#ember1824').scroll(function() {
         if ($('.ticket-grid-container').is(':visible')) {
             console.log("Scroll");
         }
@@ -83,7 +96,7 @@ $( document ).ready(function() {
 
 
 
-    /*
+/*
 NOTES:
 
 The class name "spec-ticket-item ticket-item  ember-view loading" happens after all the rows have been displayed.
