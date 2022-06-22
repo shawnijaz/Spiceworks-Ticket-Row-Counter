@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Counting rows in ticket container TEST
+// @name         Counting rows in ticket container
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Counting the rows in each ticket container
