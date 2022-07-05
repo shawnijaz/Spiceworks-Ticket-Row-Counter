@@ -30,6 +30,8 @@ $( document ).ready(function() {
 
     //Dropdown menu calling the functions
     //If one of these dropdown menus have multiple tickets in which the user has to scroll to get all tickets, the complicated will need to be equal to true
+    //Additionally, if you added a ticket filter, you'll need to add that also. EX:
+    //$('#example_tickets').click(function() { timer = 100; complicated = true/false; $.fn.PageLoad(); });
     $('#unassigned_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
     $('#waiting_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
     $('#alerted_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
