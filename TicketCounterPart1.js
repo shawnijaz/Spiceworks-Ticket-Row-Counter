@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
     var createSpan = $(".dropdown-label.spec-dropdown-label").append( "<span id='numberVal'>  </span>" ); //adds span tag next to the dropdown label to display number of tickets
     var numOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length; //Counts how many tickets
-    var complicated = true, currentScrollPosition;
+    var complicated = true, timer, currentScrollPosition;
 
     $("#numberVal").text( ' (' + numOfRows + ')' ); //Displays number of tickets
 
@@ -30,15 +30,15 @@ $( document ).ready(function() {
 
     //Dropdown menu calling the functions
     //If one of these dropdown menus have multiple tickets in which the user has to scroll to get all tickets, the complicated will need to be equal to true
-    $('#unassigned_tickets').click(function() { complicated = false; $.fn.PageLoad(); });
-    $('#waiting_tickets').click(function() { complicated = false; $.fn.PageLoad(); });
-    $('#alerted_tickets').click(function() { complicated = false; $.fn.PageLoad(); });
-    $('#past_due_tickets').click(function() { complicated = false; $.fn.PageLoad(); })
-    $('#my_tickets').click(function() { complicated = false; $.fn.PageLoad(); });
+    $('#unassigned_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
+    $('#waiting_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
+    $('#alerted_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
+    $('#past_due_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); })
+    $('#my_tickets').click(function() { timer = 100; complicated = false; $.fn.PageLoad(); });
 
-    $('#open_tickets').click(function() { complicated = true; $.fn.PageLoad(); });
-    $('#closed_tickets').click(function() { complicated = true; $.fn.PageLoad(); });
-    $('#all_tickets').click(function() { complicated = true; $.fn.PageLoad(); });
+    $('#open_tickets').click(function() { timer = 100; complicated = true; $.fn.PageLoad(); });
+    $('#closed_tickets').click(function() { timer = 100; complicated = true; $.fn.PageLoad(); });
+    $('#all_tickets').click(function() { timer = 100; complicated = true; $.fn.PageLoad(); });
 
     //This function detects when the page is loaded
     $.fn.PageLoad = function()
@@ -50,7 +50,7 @@ $( document ).ready(function() {
             function()
             {
                 check = $('.print-hide.ember-view.sw-loading-spinner.loading-spinner.loading').is(':visible');
-            }, 100);
+            }, timer);
 
         //If page hasn't loaded yet, recall the functon. Else calculate the number of tickets in the container.
         setTimeout(
@@ -63,7 +63,7 @@ $( document ).ready(function() {
                     if(complicated == true) { $.fn.TicketCountScrolling(); }
                     else { $.fn.TicketCount(); }
                 }
-            }, 100);
+            }, timer);
     }
 
     //Function to calute the number of tickets in the ticket container without a scrollable container
@@ -76,7 +76,7 @@ $( document ).ready(function() {
                 var subtractHidden = $('.spec-ticket-item.ticket-item.ember-view:not(.loading) > :hidden').length;
                 var updateNumOfRows = ticketCounter - subtractHidden;
                 $.fn.CheckCount(updateNumOfRows);
-            }, 100);
+            }, timer);
     }
 
     //Function to calculate the number of tickets in the ticket container if a scrollable container exist
@@ -90,7 +90,7 @@ $( document ).ready(function() {
                 var subtractHidden = $('.spec-ticket-item.ticket-item.ember-view:not(.loading) > :hidden').length;
                 var updateNumOfRows = ticketCounter - subtractHidden - 5 + currentScrollPosition/29;
                 $.fn.CheckCount(updateNumOfRows);
-            }, 100);
+            }, timer);
     }
 
     //This function recalculate the ticket counter if original number is off
@@ -105,7 +105,7 @@ $( document ).ready(function() {
                 {
                     if(complicated == true) { $.fn.TicketCountScrolling(); }
                     else { $.fn.TicketCount(); }
-                }, 100);
+                }, timer);
         }
 
         else { $("#numberVal").text( ' (' + Math.floor(updateNumOfRows) + ')' ); }
@@ -113,13 +113,12 @@ $( document ).ready(function() {
 
     //This button recalculates the number of tickets when scrolled
     $('.btn.btn-default.refreshButton').click(function() {
-        if(complicated == true)
-        {
-            $('.ember-view').scroll(function(){ currentScrollPosition = $(this).scrollTop(); });
-            var ticketCounter = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length;
-            var subtractHidden = $('.spec-ticket-item.ticket-item.ember-view:not(.loading) > :hidden').length;
-            var updateNumOfRows = ticketCounter - subtractHidden - 5 + currentScrollPosition/29;
-            $("#numberVal").text( ' (' + Math.floor(updateNumOfRows) + ')' );
-        }
+        timer = 0;
+        $.fn.PageLoad();
+    });
+
+    $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() {
+        timer = 100;
+        $.fn.PageLoad();
     });
 });
