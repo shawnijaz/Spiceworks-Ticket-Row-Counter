@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
     var createSpan = $(".dropdown-label.spec-dropdown-label").append( "<span id='numberVal'>  </span>" ); //adds span tag next to the dropdown label to display number of tickets
     var numOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length; //Counts how many tickets*/
-    var currentScrollPosition, timer = 100;
+    var currentScrollPosition;
 
     $("#numberVal").text( ' (' + numOfRows + ')' ); //Displays number of tickets
 
@@ -31,7 +31,7 @@ $( document ).ready(function() {
             function()
             {
                 check = $('.print-hide.ember-view.sw-loading-spinner.loading-spinner.loading').is(':visible');
-            }, timer);
+            }, 100);
 
         //If page hasn't loaded yet, recall the functon. Else calculate the number of tickets in the container.
         setTimeout(
@@ -39,7 +39,7 @@ $( document ).ready(function() {
             {
                 if(check == true) { $.fn.PageLoad(); }
                 else { $.fn.CalculateTickets(); }
-            }, timer);
+            }, 100);
     }
 
     //Function to calculate the number of thickets in the ticket contianer
@@ -52,7 +52,7 @@ $( document ).ready(function() {
                 var subtractHidden = $('.spec-ticket-item.ticket-item.ember-view:not(.loading) > :hidden').length;
                 var updateNumOfRows = ticketCounter - subtractHidden;
                 $.fn.CheckCount(updateNumOfRows);
-            }, timer);
+            }, 100);
 
         $('.ember-view').scroll(function(){
             currentScrollPosition = $(this).scrollTop();
