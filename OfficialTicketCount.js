@@ -71,4 +71,6 @@ $( document ).ready(function() {
         if(noTickets == false && updateNumOfRows <= 0) { $.fn.CalculateTickets(); }
         else { $("#numberVal").text( ' (' + Math.floor(updateNumOfRows) + ')' ); }
     }
+
+    $.fn.PageLoad();
 });
