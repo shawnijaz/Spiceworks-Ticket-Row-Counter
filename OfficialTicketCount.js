@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         OFFICIAL TICKET COUNT
+// @name         Official Ticket Count
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Counting the rows in each ticket container
@@ -19,18 +19,8 @@ $( document ).ready(function() {
 
     $("#numberVal").text( ' (' + numOfRows + ')' ); //Displays number of tickets
 
-    //Adding Refresh Button
-    $('#status_dropdown').append(
-        $(document.createElement('button')).prop({
-            type: 'button',
-            innerHTML: 'Refresh',
-            class: 'btn btn-default refreshButton',
-        })
-    );
-
-    $('.ticket-view-link.ember-view.sui-dropdown_entry').click(function() {timer = 100; $.fn.PageLoad();}); //Dropdown Menu Click Function
-    $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() { timer = 100; $.fn.PageLoad(); }); //Refresh Button Click Function
-    $('.btn.btn-default.refreshButton').click(function() { timer = 0; $.fn.PageLoad(); }); //Refresh Button Click Function
+    $('.ticket-view-link.ember-view.sui-dropdown_entry').click(function() { $.fn.PageLoad();}); //Dropdown Menu Click Function
+    $('.refresh-btn.btn.btn-default.js-refresh-btn').click(function() { $.fn.PageLoad(); }); //Refresh Button Click Function
 
     $.fn.PageLoad = function()
     {
