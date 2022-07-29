@@ -16,6 +16,7 @@ $( document ).ready(function() {
     var createSpan = $(".dropdown-label.spec-dropdown-label").append( "<span id='numberVal'>  </span>" ); //adds span tag next to the dropdown label to display number of tickets
     var numOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length; //Counts how many tickets*/
     var currentScrollPosition;
+    var container = $('.ember-view:not(.sui-dropdown_content--align-center sui-dropdown_content--top, .is-shown, .sui-dropdown_content)');
 
     $("#numberVal").text( ' (' + numOfRows + ')' ); //Displays number of tickets
 
@@ -54,7 +55,7 @@ $( document ).ready(function() {
                 $.fn.CheckCount(updateNumOfRows);
             }, 100);
 
-        $('.ember-view').scroll(function(){
+        $(container).scroll(function(){
             currentScrollPosition = $(this).scrollTop();
             var ticketCounter = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length;
             var subtractHidden = $('.spec-ticket-item.ticket-item.ember-view:not(.loading) > :hidden').length;
