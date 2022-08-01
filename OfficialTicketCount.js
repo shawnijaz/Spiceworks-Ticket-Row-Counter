@@ -16,7 +16,7 @@ $( document ).ready(function() {
     var createSpan = $(".dropdown-label.spec-dropdown-label").append( "<span id='numberVal'>  </span>" ); //adds span tag next to the dropdown label to display number of tickets
     var numOfRows = $('.spec-ticket-item.ticket-item.ember-view:not(.loading)').length; //Counts how many tickets*/
     var currentScrollPosition;
-    var container = $('.ember-view:not(.sui-dropdown_content--align-center sui-dropdown_content--top, .is-shown, .sui-dropdown_content)');
+    var container = $('.ember-view:not(.sui-dropdown_content--align-center, .sui-dropdown_content--top, .is-shown, .sui-dropdown_content, .ember-text-area, .is-expanded, .sw-expanding-textarea, .form-control, .empty)');
 
     $("#numberVal").text( ' (' + numOfRows + ')' ); //Displays number of tickets
 
